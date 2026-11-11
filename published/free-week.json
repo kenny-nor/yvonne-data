@@ -5,14 +5,10 @@
   "intro": "Free for everyone: the Weekend Core, NBA and college picks from Thursday through Saturday, plus the Thursday NFL game when it qualifies. Locked in with a fingerprint before the games.",
   "thursday": {
     "status": "pending",
-    "postAt": "Thursday afternoon, after the injury reports",
+    "postAt": "tomorrow, Thursday afternoon",
     "legs": [],
     "parlayPct": null,
-    "nfl": {
-      "game": "Commanders @ Giants · Thu 8:15 PM ET",
-      "call": "SKIP",
-      "why": "No edge. Don't trust this game 😳❓"
-    },
+    "nfl": null,
     "title": "Weekend Core · Thu–Sat"
   },
   "sunday": {
