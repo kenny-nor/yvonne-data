@@ -64,14 +64,14 @@ footer{margin-top:40px;border-top:1px solid var(--line);padding-top:18px;color:v
 <span class="soon">Coming soon</span>
 
 <div class="grid">
-  <div class="card"><h2>Free every Thursday</h2><p>A free cross-sport moneyline parlay for Thursday through Saturday, plus bet-it-or-skip-it advice for Thursday night.</p></div>
-  <div class="card"><h2>Sunday for members</h2><p>The full Sunday board, Family Cores, and Final Cores at 12:50 PM with a notification. Weekly or season pass.</p></div>
+  <div class="card"><h2>Free Weekend Core</h2><p>NBA and college picks from Thursday through Saturday, plus the Thursday NFL game when it qualifies. Posted every Thursday.</p></div>
+  <div class="card"><h2>Sunday for members</h2><p>Lightning Strikes, the 4 Main Cores, the Golden Pick, the Hot Pick and Anytime Scorers, with Final Cores at 12:50 PM and a notification. Weekly or season pass.</p></div>
   <div class="card"><h2>Results you can verify</h2><p>Each week's picks get a fingerprint posted publicly before the games. On Tuesday, tap Verify to confirm nothing was changed.</p></div>
 </div>
 
 
 <section class="free" id="free" aria-live="polite">
-  <div class="eyebrow">Free this week</div>
+  <div class="eyebrow">Free every Thursday</div>
   <h2 id="fwHead">This week's free picks</h2>
   <p class="intro" id="fwIntro">Loading…</p>
   <div id="fwBody"></div>
@@ -101,13 +101,13 @@ footer{margin-top:40px;border-top:1px solid var(--line);padding-top:18px;color:v
     document.getElementById('fwHead').textContent=d.headline||"This week's free picks";
     document.getElementById('fwIntro').textContent=d.intro||'';
     var h='',t=d.thursday||{},s=d.sunday||{};
-    h+='<div class="slot"><h3>Thursday free parlay <small>'+E(d.week)+'</small></h3>';
+    h+='<div class="slot"><h3>'+E(t.title||'Weekend Core')+' <small>'+E(d.week)+'</small></h3>';
     if(t.status==='posted'&&t.legs&&t.legs.length){h+=legs(t.legs);if(t.parlayPct!=null)h+='<p class="wait">All legs hit together: <b class="pct">'+P(t.parlayPct)+'</b></p>'}
     else h+='<p class="wait">Posting '+E(t.postAt||'Thursday')+'.</p>';
     if(t.nfl){h+='<p style="margin:10px 0 0">Thursday night: '+E(t.nfl.game)+' <span class="call">'+E(t.nfl.call)+'</span></p>'+(t.nfl.why?'<p class="wait">'+E(t.nfl.why)+'</p>':'')}
-    h+='</div><div class="slot"><h3>Sunday Final Core <small>12:50 PM ET</small></h3>';
+    h+='</div><div class="slot"><h3>'+E(s.title||'Sunday Final Core')+' <small>Members</small></h3>';
     if(s.status==='posted'&&s.cores&&s.cores.length){s.cores.forEach(function(c){h+='<p style="margin:8px 0 4px"><b>'+E(c.name)+'</b>'+(c.pct!=null?' · all legs: <span class="pct">'+P(c.pct)+'</span>':'')+'</p>'+legs(c.legs||[])});if(s.note)h+='<p class="wait">'+E(s.note)+'</p>'}
-    else if(s.status==='members')h+='<p class="wait">🔒 Members only. Coming soon.</p>';
+    else if(s.status==='members'){h+='<ul class="legs">'+(s.members||[]).map(function(m){return '<li><span>🔒 '+E(m)+'</span><span class="wait">Coming soon</span></li>'}).join('')+'</ul>';if(s.note)h+='<p class="wait" style="margin-top:8px">'+E(s.note)+'</p>'}
     else h+='<p class="wait">Posting '+E(s.postAt||'Sunday 12:50 PM ET')+'. Follow on X to get it first.</p>';
     h+='</div>';
     (d.proof||[]).forEach(function(p,i){h+='<div class="slot"><h3>Proof: '+E(p.label)+' <small>'+E(p.lockedAt||'')+'</small></h3><p class="wait">Fingerprint'+(p.postedOnX?' (posted on X '+E(p.postedOnX)+')':'')+':</p><div class="fp">'+E(p.sha256)+'</div><button class="vbtn" data-i="'+i+'">Verify</button><span class="vres" id="vr'+i+'"></span></div>'});

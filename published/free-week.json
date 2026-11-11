@@ -1,8 +1,8 @@
 {
   "schema": "yvonne-free-week-v1",
   "week": "NFL Week 10",
-  "headline": "Free Thursday parlay",
-  "intro": "Try us out: this week's Thursday parlay is free for everyone, locked in with a fingerprint before the games.",
+  "headline": "Free Weekend Core",
+  "intro": "Free for everyone: the Weekend Core, NBA and college picks from Thursday through Saturday, plus the Thursday NFL game when it qualifies. Locked in with a fingerprint before the games.",
   "thursday": {
     "status": "pending",
     "postAt": "Thursday afternoon, after the injury reports",
@@ -12,13 +12,20 @@
       "game": "Commanders @ Giants · Thu 8:15 PM ET",
       "call": "SKIP",
       "why": "No edge. Don't trust this game 😳❓"
-    }
+    },
+    "title": "Weekend Core · Thu–Sat"
   },
   "sunday": {
     "status": "members",
-    "postAt": "Sunday 12:50 PM ET",
-    "cores": [],
-    "note": ""
+    "title": "Sunday NFL",
+    "members": [
+      "Lightning Strikes",
+      "4 Main Cores",
+      "Golden Pick",
+      "Hot Pick",
+      "Anytime Scorer"
+    ],
+    "note": "If the Golden Pick is the Thursday game, it goes in the free Weekend Core."
   },
   "proof": []
 }
