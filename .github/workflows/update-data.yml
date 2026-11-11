@@ -35,7 +35,7 @@ jobs:
       - name: Build fresh data (stops if anything looks wrong)
         run: |
           mkdir -p site/data site/published
-          cp index.html status.html og.png og.jpg yvonne.jpg postcard.jpg site/
+          cp index.html postcard.html status.html og.png og.jpg yvonne.jpg postcard.jpg site/
           if [ -d published ]; then cp -r published/. site/published/; fi
           if ! python3 build_snapshot.py --season 2026 --out site/data/snapshot.json --prev-status prev_status.json; then
             if [ "${{ github.event_name }}" = "push" ]; then
