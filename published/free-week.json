@@ -1,8 +1,8 @@
 {
   "schema": "yvonne-free-week-v1",
   "week": "NFL Week 10",
-  "headline": "Week 10 is free for everyone",
-  "intro": "Try us out this week: the Thursday parlay and the Sunday Final Core are free. Everything is locked in with a fingerprint before the games.",
+  "headline": "Free Thursday parlay",
+  "intro": "Try us out: this week's Thursday parlay is free for everyone, locked in with a fingerprint before the games.",
   "thursday": {
     "status": "pending",
     "postAt": "Thursday afternoon, after the injury reports",
@@ -15,7 +15,7 @@
     }
   },
   "sunday": {
-    "status": "pending",
+    "status": "members",
     "postAt": "Sunday 12:50 PM ET",
     "cores": [],
     "note": ""

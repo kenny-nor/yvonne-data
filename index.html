@@ -107,6 +107,7 @@ footer{margin-top:40px;border-top:1px solid var(--line);padding-top:18px;color:v
     if(t.nfl){h+='<p style="margin:10px 0 0">Thursday night: '+E(t.nfl.game)+' <span class="call">'+E(t.nfl.call)+'</span></p>'+(t.nfl.why?'<p class="wait">'+E(t.nfl.why)+'</p>':'')}
     h+='</div><div class="slot"><h3>Sunday Final Core <small>12:50 PM ET</small></h3>';
     if(s.status==='posted'&&s.cores&&s.cores.length){s.cores.forEach(function(c){h+='<p style="margin:8px 0 4px"><b>'+E(c.name)+'</b>'+(c.pct!=null?' · all legs: <span class="pct">'+P(c.pct)+'</span>':'')+'</p>'+legs(c.legs||[])});if(s.note)h+='<p class="wait">'+E(s.note)+'</p>'}
+    else if(s.status==='members')h+='<p class="wait">🔒 Members only. Coming soon.</p>';
     else h+='<p class="wait">Posting '+E(s.postAt||'Sunday 12:50 PM ET')+'. Follow on X to get it first.</p>';
     h+='</div>';
     (d.proof||[]).forEach(function(p,i){h+='<div class="slot"><h3>Proof: '+E(p.label)+' <small>'+E(p.lockedAt||'')+'</small></h3><p class="wait">Fingerprint'+(p.postedOnX?' (posted on X '+E(p.postedOnX)+')':'')+':</p><div class="fp">'+E(p.sha256)+'</div><button class="vbtn" data-i="'+i+'">Verify</button><span class="vres" id="vr'+i+'"></span></div>'});
