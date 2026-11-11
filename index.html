@@ -39,6 +39,22 @@ a.btn:hover,a.btn:focus-visible{border-color:var(--gold);outline:none}
 footer{margin-top:40px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:13.5px;display:grid;gap:8px}
 .help{background:var(--surface);border-radius:12px;padding:12px 14px;color:var(--ink)}
 .memory{font:400 19px var(--display);color:var(--gold);text-align:center;margin-top:12px}
+.free{margin-top:34px;border:1px solid var(--gold);border-radius:16px;padding:20px;background:linear-gradient(180deg,#1c170c,var(--surface))}
+.free h2{font:400 26px/1.15 var(--display);margin:4px 0 6px}
+.free .intro{color:var(--muted);margin:0 0 14px}
+.slot{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:10px}
+.slot h3{font:400 19px var(--display);margin:0 0 6px;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.slot h3 small{font:600 12px var(--body);color:var(--gold);letter-spacing:.06em;text-transform:uppercase}
+.wait{color:var(--muted);margin:0}
+.legs{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.legs li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:6px 0}
+.legs li:last-child{border-bottom:0}
+.legs .g{display:block;color:var(--muted);font-size:13.5px}
+.pct{font-weight:700;color:var(--gold);white-space:nowrap}
+.call{display:inline-block;font-weight:700;border-radius:999px;padding:3px 12px;background:var(--gold-soft);color:var(--gold)}
+.fp{font:12px/1.4 ui-monospace,Menlo,monospace;word-break:break-all;color:var(--muted)}
+.vbtn{margin-top:8px;font:600 14px var(--body);background:var(--gold);color:#1a1405;border:0;border-radius:9px;padding:8px 14px;cursor:pointer}
+.vres{font-weight:600;margin-left:8px}
 </style></head>
 <body><main>
 <img class="face" src="yvonne.jpg" alt="Yvonne's Lightning Strikes host" width="112" height="112">
@@ -52,6 +68,14 @@ footer{margin-top:40px;border-top:1px solid var(--line);padding-top:18px;color:v
   <div class="card"><h2>Sunday for members</h2><p>The full Sunday board, Family Cores, and Final Cores at 12:50 PM with a notification. Weekly or season pass.</p></div>
   <div class="card"><h2>Results you can verify</h2><p>Each week's picks get a fingerprint posted publicly before the games. On Tuesday, tap Verify to confirm nothing was changed.</p></div>
 </div>
+
+
+<section class="free" id="free" aria-live="polite">
+  <div class="eyebrow">Free this week</div>
+  <h2 id="fwHead">This week's free picks</h2>
+  <p class="intro" id="fwIntro">Loading…</p>
+  <div id="fwBody"></div>
+</section>
 
 <section class="follow">
   <h2>Follow for launch day</h2>
@@ -67,4 +91,33 @@ footer{margin-top:40px;border-top:1px solid var(--line);padding-top:18px;color:v
   <div>Research picks, not guarantees. Not affiliated with the NFL or any team.</div>
   <div class="memory">In loving memory of Yvonne</div>
 </footer>
-</main></body></html>
+</main><script>
+(function(){
+  var E=function(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+  var P=function(v){return v==null||v===''?'':Math.round(v)+'%'};
+  function legs(a){return '<ul class="legs">'+a.map(function(l){return '<li><span><b>'+E(l.pick)+'</b><span class="g">'+E([l.sport,l.game,l.time].filter(Boolean).join(' · '))+'</span></span><span class="pct">'+P(l.pct)+'</span></li>'}).join('')+'</ul>'}
+  function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return('0'+b.toString(16)).slice(-2)}).join('')}
+  function render(d){
+    document.getElementById('fwHead').textContent=d.headline||"This week's free picks";
+    document.getElementById('fwIntro').textContent=d.intro||'';
+    var h='',t=d.thursday||{},s=d.sunday||{};
+    h+='<div class="slot"><h3>Thursday free parlay <small>'+E(d.week)+'</small></h3>';
+    if(t.status==='posted'&&t.legs&&t.legs.length){h+=legs(t.legs);if(t.parlayPct!=null)h+='<p class="wait">All legs hit together: <b class="pct">'+P(t.parlayPct)+'</b></p>'}
+    else h+='<p class="wait">Posting '+E(t.postAt||'Thursday')+'.</p>';
+    if(t.nfl){h+='<p style="margin:10px 0 0">Thursday night: '+E(t.nfl.game)+' <span class="call">'+E(t.nfl.call)+'</span></p>'+(t.nfl.why?'<p class="wait">'+E(t.nfl.why)+'</p>':'')}
+    h+='</div><div class="slot"><h3>Sunday Final Core <small>12:50 PM ET</small></h3>';
+    if(s.status==='posted'&&s.cores&&s.cores.length){s.cores.forEach(function(c){h+='<p style="margin:8px 0 4px"><b>'+E(c.name)+'</b>'+(c.pct!=null?' · all legs: <span class="pct">'+P(c.pct)+'</span>':'')+'</p>'+legs(c.legs||[])});if(s.note)h+='<p class="wait">'+E(s.note)+'</p>'}
+    else h+='<p class="wait">Posting '+E(s.postAt||'Sunday 12:50 PM ET')+'. Follow on X to get it first.</p>';
+    h+='</div>';
+    (d.proof||[]).forEach(function(p,i){h+='<div class="slot"><h3>Proof: '+E(p.label)+' <small>'+E(p.lockedAt||'')+'</small></h3><p class="wait">Fingerprint'+(p.postedOnX?' (posted on X '+E(p.postedOnX)+')':'')+':</p><div class="fp">'+E(p.sha256)+'</div><button class="vbtn" data-i="'+i+'">Verify</button><span class="vres" id="vr'+i+'"></span></div>'});
+    var b=document.getElementById('fwBody');b.innerHTML=h;
+    b.querySelectorAll('.vbtn').forEach(function(btn){btn.onclick=function(){var p=d.proof[+btn.dataset.i],o=document.getElementById('vr'+btn.dataset.i);
+      if(!(window.crypto&&crypto.subtle)){o.textContent='Your browser cannot check this.';return}
+      crypto.subtle.digest('SHA-256',new TextEncoder().encode(p.text)).then(function(x){var ok=hex(x)===String(p.sha256).toLowerCase();o.textContent=ok?'✓ Matches. Nothing was changed.':'✗ Does not match.';o.style.color=ok?'#7fd18b':'#ff8a7a'})}});
+  }
+  var url='published/free-week.json?t='+Date.now();
+  Promise.race([fetch(url,{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}),new Promise(function(_,j){setTimeout(j,15000)})])
+    .then(render).catch(function(){document.getElementById('fwIntro').textContent='Free picks post Thursday and Sunday. Follow on X to get them first.'});
+})();
+</script>
+</body></html>
