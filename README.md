@@ -13,6 +13,9 @@ This folder keeps the app's football data fresh by itself.
 If anything goes wrong (a download fails, or the data looks incomplete or older than what's already published),
 the update stops and the last good data stays online. Nothing broken is ever published.
 
+Sunday Final Cores: the owner app's **Send to customers** button saves `published/final-cores.json` here, which publishes it
+automatically (about 2 minutes). The customer app shows it at the release time (default Sunday 12:50 PM ET).
+
 To refresh right now: go to the **Actions** tab, pick **Update Yvonne data**, and tap **Run workflow**.
 
 Next season: change `--season 2026` to `--season 2027` in `.github/workflows/update-data.yml`.

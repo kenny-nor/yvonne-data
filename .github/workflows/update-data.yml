@@ -7,6 +7,9 @@ on:
     - cron: "17 18,22 * * 3-6"   # Wed-Sat, 1:17 PM and 5:17 PM ET (injury reports)
     - cron: "17 15 * * 0"        # Sunday 10:17 AM ET (final Sunday-morning update)
   workflow_dispatch: {}            # "Run workflow" button for a manual refresh
+  push:
+    branches: [main]
+    paths: ["published/**"]        # Kenny's Sunday Final Cores, sent from the owner app
 
 permissions:
   contents: read
@@ -31,9 +34,19 @@ jobs:
           curl -sf "https://$OWNER.github.io/$REPO/data/status.json" -o prev_status.json || echo "{}" > prev_status.json
       - name: Build fresh data (stops if anything looks wrong)
         run: |
-          mkdir -p site/data
+          mkdir -p site/data site/published
           cp index.html site/index.html
-          python3 build_snapshot.py --season 2026 --out site/data/snapshot.json --prev-status prev_status.json
+          if [ -d published ]; then cp -r published/. site/published/; fi
+          if ! python3 build_snapshot.py --season 2026 --out site/data/snapshot.json --prev-status prev_status.json; then
+            if [ "${{ github.event_name }}" = "push" ]; then
+              # Publishing Final Cores must not wait on a data hiccup: keep the last good data online.
+              OWNER=$(echo "$GITHUB_REPOSITORY_OWNER" | tr 'A-Z' 'a-z'); REPO=${GITHUB_REPOSITORY#*/}
+              curl -sf "https://$OWNER.github.io/$REPO/data/snapshot.json" -o site/data/snapshot.json
+              curl -sf "https://$OWNER.github.io/$REPO/data/status.json" -o site/data/status.json
+            else
+              exit 1
+            fi
+          fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
