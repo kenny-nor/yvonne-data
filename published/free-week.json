@@ -8,7 +8,11 @@
     "postAt": "Thursday afternoon, after the injury reports",
     "legs": [],
     "parlayPct": null,
-    "nfl": null
+    "nfl": {
+      "game": "Commanders @ Giants · Thu 8:15 PM ET",
+      "call": "SKIP",
+      "why": "No edge. Don't trust this game 😳❓"
+    }
   },
   "sunday": {
     "status": "pending",
