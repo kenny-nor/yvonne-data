@@ -1,0 +1,49 @@
+name: Update Yvonne data
+
+# Runs by itself. Times are UTC (subtract 5 hours for Eastern).
+on:
+  schedule:
+    - cron: "17 11 * * *"        # every day, 6:17 AM ET (catches Monday-night results)
+    - cron: "17 18,22 * * 3-6"   # Wed-Sat, 1:17 PM and 5:17 PM ET (injury reports)
+    - cron: "17 15 * * 0"        # Sunday 10:17 AM ET (final Sunday-morning update)
+  workflow_dispatch: {}            # "Run workflow" button for a manual refresh
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Get the currently published status (if any)
+        run: |
+          OWNER=$(echo "$GITHUB_REPOSITORY_OWNER" | tr 'A-Z' 'a-z'); REPO=${GITHUB_REPOSITORY#*/}
+          curl -sf "https://$OWNER.github.io/$REPO/data/status.json" -o prev_status.json || echo "{}" > prev_status.json
+      - name: Build fresh data (stops if anything looks wrong)
+        run: |
+          mkdir -p site/data
+          cp index.html site/index.html
+          python3 build_snapshot.py --season 2026 --out site/data/snapshot.json --prev-status prev_status.json
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
