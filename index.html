@@ -13,76 +13,92 @@
 <meta name="twitter:description" content="NFL picks with every result posted and provable. Free cross-sport parlay every Thursday. Coming soon. 21+">
 <meta name="twitter:image" content="https://kenny-nor.github.io/yvonne-data/og.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Inter:wght@400;600;700&family=Libre+Baskerville:wght@700&display=swap">
 <style>
-:root{--paper:#f7f1e3;--ink:#1d1a14;--muted:#6b6252;--rule:#d9cdb2;--gold:#a87a1c;--gold-bg:#efe2bf;--red:#8c2f22;
-  --serif:"Libre Baskerville",Georgia,serif;--sans:"Inter",system-ui,-apple-system,Arial,sans-serif;color-scheme:light}
+:root{--desk:#1b1712;--card:#fbf6ea;--ink:#1d1a14;--muted:#6e6556;--rule:#d8ccb2;--gold:#b0801d;--gold-bg:#f1e3bd;--red:#9b3324;--blue:#2c4a7a;
+  --hand:"Caveat","Bradley Hand","Segoe Print",cursive;--sans:"Inter",system-ui,-apple-system,Arial,sans-serif;--serif:"Libre Baskerville",Georgia,serif;color-scheme:light}
 *{box-sizing:border-box}
-html{background:#e9e1cf}
-body{margin:0;background:#e9e1cf;color:var(--ink);font:18px/1.7 var(--serif)}
-.sheet{max-width:680px;margin:0 auto;background:var(--paper);min-height:100vh;padding:36px max(22px,env(safe-area-inset-left)) 48px;box-shadow:0 0 0 1px var(--rule)}
-.mast{text-align:center;border-bottom:3px double var(--ink);padding-bottom:14px}
-.mast .face{width:96px;height:96px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);display:block;margin:0 auto 12px}
-.mast h1{font:700 clamp(30px,8vw,44px)/1.1 var(--serif);margin:0;letter-spacing:-.01em}
-.mast h1 .b{color:var(--gold)}
-.dateline{display:flex;justify-content:space-between;gap:10px;font:600 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--ink);margin-top:14px;padding-top:8px}
-h2{font:700 24px/1.25 var(--serif);margin:34px 0 8px}
-h3{font:600 13px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:28px 0 6px}
-p{margin:0 0 14px}
-.lede{font-size:20px;font-style:italic;margin-top:24px}
-hr{border:0;border-top:1px solid var(--rule);margin:30px 0}
-.list{list-style:none;margin:6px 0 10px;padding:0}
-.list li{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dotted var(--rule)}
-.list .g{display:block;font:14px/1.4 var(--sans);color:var(--muted)}
-.pct{font:700 17px var(--sans);color:var(--gold);white-space:nowrap}
-.call{font:700 14px var(--sans);background:var(--gold-bg);color:var(--ink);padding:2px 10px;border-radius:4px;letter-spacing:.06em}
+html,body{background:var(--desk)}
+body{margin:0;color:var(--ink);font:16px/1.55 var(--sans);background:radial-gradient(ellipse at 50% 0,#3a2c16 0,var(--desk) 60%) fixed}
+main{max-width:760px;margin:0 auto;padding:28px max(16px,env(safe-area-inset-left)) 40px}
+.pc{background:var(--card);border-radius:6px;box-shadow:0 18px 40px rgba(0,0,0,.45),0 2px 0 rgba(0,0,0,.2);padding:12px;position:relative}
+.front{transform:rotate(-1.2deg)}
+.front img{display:block;width:100%;height:auto;border-radius:3px}
+.front .cap{position:absolute;left:24px;bottom:22px;font:700 clamp(22px,5vw,34px)/1 var(--hand);color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.8)}
+.label{text-align:center;color:#cbbd9f;font:600 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;margin:26px 0 12px}
+.back{transform:rotate(.6deg);padding:20px 20px 24px;background-image:linear-gradient(var(--card),var(--card))}
+.back:before{content:"";position:absolute;inset:0;border-radius:6px;box-shadow:inset 0 0 0 6px var(--card),inset 0 0 0 8px var(--blue),inset 0 0 0 10px var(--card),inset 0 0 0 12px var(--red);pointer-events:none;opacity:.55}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid var(--rule);padding-bottom:10px}
+.top .pcw{font:700 22px var(--serif);letter-spacing:.3em}
+.stamp{width:86px;height:100px;flex:none;background:#1d1a14;color:#f0cf7f;border:3px dotted var(--card);outline:2px solid #1d1a14;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 11px var(--sans);letter-spacing:.08em;position:relative}
+.stamp .bolt{font-size:38px;line-height:1}
+.pm{position:absolute;right:120px;top:16px;width:92px;height:92px;border:2px solid rgba(155,51,36,.55);border-radius:50%;color:rgba(155,51,36,.7);display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 10px/1.25 var(--sans);letter-spacing:.08em;text-align:center;transform:rotate(-14deg)}
+.cols{display:grid;grid-template-columns:1.5fr 1fr;gap:22px;margin-top:14px}
+.msg{border-right:1px solid var(--rule);padding-right:20px}
+.hand{font:500 26px/1.15 var(--hand);color:var(--blue);margin:0 0 8px}
+.hand.big{font-weight:700;font-size:30px}
+.msg p{margin:0 0 10px}
+h3{font:700 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:18px 0 4px}
+.list{list-style:none;margin:0;padding:0}
+.list li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dotted var(--rule)}
+.list .g{display:block;font-size:13px;color:var(--muted)}
+.pct{font-weight:700;color:var(--gold);white-space:nowrap}
+.call{font:700 13px var(--sans);background:var(--gold-bg);padding:1px 9px;border-radius:4px;letter-spacing:.06em}
 .wait{color:var(--muted);font-style:italic}
-.lock{color:var(--muted)}
-.fp{font:12px/1.5 ui-monospace,Menlo,monospace;word-break:break-all;color:var(--muted);background:#efe7d4;padding:8px 10px;border-radius:4px}
-.vbtn{margin-top:8px;font:700 14px var(--sans);background:var(--ink);color:var(--paper);border:0;border-radius:6px;padding:9px 16px;cursor:pointer}
-.vres{font:600 14px var(--sans);margin-left:8px}
-.follow a{color:var(--ink);font-weight:700;text-decoration-color:var(--gold);text-underline-offset:3px}
-.follow p{margin:0 0 6px}
-.sign{font-style:italic;font-size:20px;margin-top:26px}
-.fine{font:13.5px/1.6 var(--sans);color:var(--muted);border-top:3px double var(--ink);margin-top:34px;padding-top:14px}
-.fine b{color:var(--ink)}
-.memory{text-align:center;font-style:italic;color:var(--red);margin-top:12px}
+.fp{font:11.5px/1.45 ui-monospace,Menlo,monospace;word-break:break-all;color:var(--muted);background:#f0e8d6;padding:7px 9px;border-radius:4px}
+.vbtn{margin-top:8px;font:700 14px var(--sans);background:var(--ink);color:var(--card);border:0;border-radius:6px;padding:8px 14px;cursor:pointer}
+.vres{font-weight:600;font-size:14px;margin-left:8px}
+.addr .to{font:500 24px/1.2 var(--hand);color:var(--blue);margin:4px 0 6px}
+.addr .line{border-bottom:1px solid var(--rule);padding:8px 0 4px;font-size:14px}
+.addr a{color:var(--ink);font-weight:700;text-decoration-color:var(--gold);text-underline-offset:3px}
+.addr .lbl{color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase;display:block}
+.how{margin-top:16px;font-size:14px;color:var(--muted)}
+.how b{color:var(--ink)}
+.sign{font:700 30px/1.1 var(--hand);color:var(--blue);margin-top:14px}
+.fine{color:#cbbd9f;font-size:13px;text-align:center;margin-top:26px;display:grid;gap:6px}
+.fine b{color:#f3ecdf}
+.memory{font:700 24px var(--hand);color:#f0cf7f}
+@media (max-width:620px){.cols{grid-template-columns:1fr}.msg{border-right:0;padding-right:0;border-bottom:1px solid var(--rule);padding-bottom:14px}.pm{right:100px;width:78px;height:78px;font-size:9px}.stamp{width:72px;height:86px}.stamp .bolt{font-size:30px}.top .pcw{font-size:17px;letter-spacing:.22em}}
 </style></head>
-<body><div class="sheet">
-<header class="mast">
-  <img class="face" src="yvonne.jpg" alt="Yvonne's Lightning Strikes host" width="96" height="96">
-  <h1><span class="b">⚡</span> Yvonne's Lightning Strikes</h1>
-  <div class="dateline"><span id="wk">NFL Week 10</span><span>Coming soon</span></div>
-</header>
+<body><main>
+<div class="label">The front</div>
+<div class="pc front"><img src="postcard.jpg" alt="Yvonne's Lightning Strikes host in the studio" width="1200" height="800"><div class="cap">Greetings from Yvonne's ⚡</div></div>
 
-<p class="lede">Every pick is locked in before kickoff, and every result is posted the Tuesday after, wins and losses alike. You can check the proof yourself.</p>
-
-<h2 id="fwHead">Free Weekend Core</h2>
-<p id="fwIntro">Loading this week's picks…</p>
-<div id="fwBody"></div>
-
-<hr>
-<h2>How it works</h2>
-<p><b>Free every Thursday:</b> the Weekend Core, with NBA and college picks from Thursday through Saturday, plus the Thursday NFL game when it qualifies.</p>
-<p><b>Sunday for members:</b> Lightning Strikes, the 4 Main Cores, the Golden Pick, the Hot Pick and Anytime Scorers, with Final Cores at 12:50 PM and a notification. Weekly or season pass.</p>
-<p><b>Proof you can check:</b> each set of picks gets a fingerprint posted publicly before the games. Tap Verify to confirm nothing was changed.</p>
-
-<hr>
-<section class="follow">
-<h2>Follow for launch day</h2>
-<p>X: <a href="https://x.com/YvonnesStrikes" rel="noopener">@YvonnesStrikes</a></p>
-<p>Instagram: <a href="https://www.instagram.com/yvonnesstrikes/" rel="noopener">@yvonnesstrikes</a></p>
-<p>TikTok: <a href="https://www.tiktok.com/@yvonnesstrikes" rel="noopener">@yvonnesstrikes</a></p>
-</section>
-
-<p class="sign">See you Thursday. ⚡</p>
+<div class="label">Flip it over</div>
+<div class="pc back">
+  <div class="top">
+    <div><div class="pcw">POST CARD</div><div class="wait" id="wk">NFL Week 10</div></div>
+    <div class="stamp" aria-hidden="true"><span class="bolt">⚡</span>21+</div>
+  </div>
+  <div class="pm" aria-hidden="true"><span>LIGHTNING</span><span id="pmwk">WEEK 10</span><span>STRIKES</span></div>
+  <div class="cols">
+    <div class="msg">
+      <p class="hand big">Hey friend,</p>
+      <p class="hand">This week's Weekend Core is on me. Every pick gets locked in before kickoff, so you can check that nothing changed.</p>
+      <h3 id="fwHead">Free Weekend Core</h3>
+      <p id="fwIntro" class="wait">Loading this week's picks…</p>
+      <div id="fwBody"></div>
+      <p class="sign">See you Thursday. ⚡</p>
+    </div>
+    <div class="addr">
+      <p class="to">To: everyone who loves the game</p>
+      <div class="line"><span class="lbl">X</span><a href="https://x.com/YvonnesStrikes" rel="noopener">@YvonnesStrikes</a></div>
+      <div class="line"><span class="lbl">Instagram</span><a href="https://www.instagram.com/yvonnesstrikes/" rel="noopener">@yvonnesstrikes</a></div>
+      <div class="line"><span class="lbl">TikTok</span><a href="https://www.tiktok.com/@yvonnesstrikes" rel="noopener">@yvonnesstrikes</a></div>
+      <div class="how">
+        <p><b>Free every Thursday:</b> NBA and college picks, Thursday through Saturday, plus the Thursday NFL game when it qualifies.</p>
+        <p><b>Sunday for members:</b> Lightning Strikes, 4 Main Cores, Golden Pick, Hot Pick and Anytime Scorers. Final Cores at 12:50 PM. Weekly or season pass. Coming soon.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer class="fine">
-  <p><b>21+ only.</b> Gambling problem? Call or text <b>1-800-GAMBLER</b>.</p>
-  <p>Research picks, not guarantees. Not affiliated with the NFL or any team.</p>
-  <p class="memory">In loving memory of Yvonne ❤️</p>
+  <div><b>21+ only.</b> Gambling problem? Call or text <b>1-800-GAMBLER</b>.</div>
+  <div>Research picks, not guarantees. Not affiliated with the NFL or any team.</div>
+  <div class="memory">In loving memory of Yvonne ❤️</div>
 </footer>
-</div>
+</main>
 <script>
 (function(){
   var E=function(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
@@ -90,18 +106,17 @@ hr{border:0;border-top:1px solid var(--rule);margin:30px 0}
   function legs(a){return '<ul class="list">'+a.map(function(l){return '<li><span><b>'+E(l.pick)+'</b><span class="g">'+E([l.sport,l.game,l.time].filter(Boolean).join(' · '))+'</span></span><span class="pct">'+P(l.pct)+'</span></li>'}).join('')+'</ul>'}
   function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return('0'+b.toString(16)).slice(-2)}).join('')}
   function render(d){
-    if(d.week)document.getElementById('wk').textContent=d.week;
-    document.getElementById('fwHead').textContent=d.headline||'Free Weekend Core';
-    document.getElementById('fwIntro').textContent=d.intro||'';
-    var h='',t=d.thursday||{},s=d.sunday||{};
-    h+='<h3>'+E(t.title||'Weekend Core')+'</h3>';
-    if(t.status==='posted'&&t.legs&&t.legs.length){h+=legs(t.legs);if(t.parlayPct!=null)h+='<p>All legs hit together: <span class="pct">'+P(t.parlayPct)+'</span></p>'}
-    else h+='<p class="wait">Posting '+E(t.postAt||'Thursday')+'.</p>';
+    if(d.week){document.getElementById('wk').textContent=d.week;document.getElementById('pmwk').textContent=d.week.replace(/^NFL\s*/i,'').toUpperCase()}
+    document.getElementById('fwHead').textContent=(d.thursday&&d.thursday.title)||d.headline||'Free Weekend Core';
+    var t=d.thursday||{},s=d.sunday||{},h='';
+    var intro=document.getElementById('fwIntro');
+    if(t.status==='posted'&&t.legs&&t.legs.length){intro.remove();h+=legs(t.legs);if(t.parlayPct!=null)h+='<p>All legs hit together: <span class="pct">'+P(t.parlayPct)+'</span></p>'}
+    else intro.textContent='Posting '+(t.postAt||'Thursday')+'.';
     if(t.nfl){h+='<h3>Thursday night</h3><p>'+E(t.nfl.game)+' &nbsp;<span class="call">'+E(t.nfl.call)+'</span></p>'+(t.nfl.why?'<p>'+E(t.nfl.why)+'</p>':'')}
     h+='<h3>'+E(s.title||'Sunday NFL')+' · members</h3>';
     if(s.status==='posted'&&s.cores&&s.cores.length){s.cores.forEach(function(c){h+='<p><b>'+E(c.name)+'</b>'+(c.pct!=null?' · all legs: <span class="pct">'+P(c.pct)+'</span>':'')+'</p>'+legs(c.legs||[])})}
-    else if(s.status==='members'){h+='<ul class="list">'+(s.members||[]).map(function(m){return '<li><span class="lock">🔒 '+E(m)+'</span><span class="wait">Coming soon</span></li>'}).join('')+'</ul>'}
-    if(s.note)h+='<p class="wait">'+E(s.note)+'</p>';
+    else if(s.status==='members'){h+='<ul class="list">'+(s.members||[]).map(function(m){return '<li><span>🔒 '+E(m)+'</span><span class="wait">Coming soon</span></li>'}).join('')+'</ul>'}
+    if(s.note)h+='<p class="wait" style="margin-top:6px">'+E(s.note)+'</p>';
     (d.proof||[]).forEach(function(p,i){h+='<h3>Proof: '+E(p.label)+'</h3><p class="wait">Locked '+E(p.lockedAt||'')+(p.postedOnX?', fingerprint posted on X '+E(p.postedOnX):'')+'.</p><div class="fp">'+E(p.sha256)+'</div><button class="vbtn" data-i="'+i+'">Verify</button><span class="vres" id="vr'+i+'"></span>'});
     var b=document.getElementById('fwBody');b.innerHTML=h;
     b.querySelectorAll('.vbtn').forEach(function(btn){btn.onclick=function(){var p=d.proof[+btn.dataset.i],o=document.getElementById('vr'+btn.dataset.i);
