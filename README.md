@@ -8,7 +8,9 @@ This folder keeps the app's football data fresh by itself.
   - every day at 6:17 AM Eastern (picks up Monday-night results)
   - Wednesday through Saturday at 1:17 PM and 5:17 PM Eastern (injury reports)
   - Sunday at 10:17 AM Eastern (last update before the early games)
-- `index.html` is a status page that shows when the data was last updated.
+- `index.html` is the public "Coming soon" front page (safe to share: no picks, no model).
+- `status.html` shows when the data was last updated.
+- `og.png` is the preview image social apps show when the link is posted.
 
 If anything goes wrong (a download fails, or the data looks incomplete or older than what's already published),
 the update stops and the last good data stays online. Nothing broken is ever published.
