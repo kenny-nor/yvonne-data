@@ -26,7 +26,7 @@ main{max-width:760px;margin:0 auto;padding:28px max(16px,env(safe-area-inset-lef
 .front img{display:block;width:100%;height:auto;border-radius:3px}
 .front .cap{position:absolute;left:24px;bottom:22px;font:700 clamp(22px,5vw,34px)/1 var(--hand);color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.8)}
 .label{text-align:center;color:#cbbd9f;font:600 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;margin:26px 0 12px}
-.back{transform:rotate(.6deg);padding:20px 20px 24px;background-image:linear-gradient(var(--card),var(--card))}
+.back{transform:none;padding:20px 20px 24px;background-image:linear-gradient(var(--card),var(--card))}
 .back:before{content:"";position:absolute;inset:0;border-radius:6px;box-shadow:inset 0 0 0 6px var(--card),inset 0 0 0 8px var(--blue),inset 0 0 0 10px var(--card),inset 0 0 0 12px var(--red);pointer-events:none;opacity:.55}
 .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid var(--rule);padding-bottom:10px}
 .top .pcw{font:700 22px var(--serif);letter-spacing:.3em}
@@ -61,10 +61,10 @@ h3{font:700 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color
 @media (max-width:620px){.cols{grid-template-columns:1fr}.msg{border-right:0;padding-right:0;border-bottom:1px solid var(--rule);padding-bottom:14px}.pm{right:100px;width:78px;height:78px;font-size:9px}.stamp{width:72px;height:86px}.stamp .bolt{font-size:30px}.top .pcw{font-size:17px;letter-spacing:.22em}}
 </style></head>
 <body><main>
-<div class="label">The front</div>
+
 <div class="pc front"><img src="postcard.jpg" alt="Yvonne's Lightning Strikes host in the studio" width="1200" height="800"><div class="cap">Greetings ⚡️⚡️⚡️</div></div>
 
-<div class="label">Flip it over</div>
+<div style="height:22px"></div>
 <div class="pc back">
   <div class="top">
     <div><div class="pcw">POST CARD</div><div class="wait" id="wk">NFL Week 10</div></div>
