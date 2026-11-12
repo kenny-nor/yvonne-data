@@ -2,14 +2,44 @@
   "schema": "yvonne-free-week-v1",
   "week": "NFL Week 10",
   "headline": "Free Weekend Core",
-  "intro": "Free for everyone: the Weekend Core, NBA and college picks from Thursday through Saturday, plus the Thursday NFL game when it qualifies. Locked in with a fingerprint before the games.",
+  "intro": "Free for everyone: this week's Weekend Core, NBA and college picks from Thursday through Saturday. Locked in with a fingerprint before the first game.",
   "thursday": {
-    "status": "pending",
-    "postAt": "tomorrow, Thursday afternoon",
-    "legs": [],
+    "status": "posted",
+    "postAt": "Thursday afternoon",
+    "legs": [
+      {
+        "sport": "NBA",
+        "pick": "Pistons ML",
+        "game": "Pistons @ Wizards",
+        "time": "Thu Nov 12, 7:00 PM ET",
+        "pct": 79
+      },
+      {
+        "sport": "NBA",
+        "pick": "Rockets ML",
+        "game": "Jazz @ Rockets",
+        "time": "Fri Nov 13, 8:30 PM ET",
+        "pct": null
+      },
+      {
+        "sport": "NBA",
+        "pick": "Spurs ML",
+        "game": "Warriors @ Spurs",
+        "time": "Fri Nov 13, 9:30 PM ET",
+        "pct": null
+      },
+      {
+        "sport": "College",
+        "pick": "Notre Dame ML",
+        "game": "Boston College @ Notre Dame",
+        "time": "Sat Nov 14, 3:30 PM ET",
+        "pct": 98
+      }
+    ],
     "parlayPct": null,
     "nfl": null,
-    "title": "Weekend Core · Thu–Sat"
+    "title": "Weekend Core · Thu–Sat",
+    "showUntil": "2026-11-16T06:00:00-05:00"
   },
   "sunday": {
     "status": "members",
@@ -23,5 +53,13 @@
     ],
     "note": "If the Golden Pick is the Thursday game, it goes in the free Weekend Core."
   },
-  "proof": []
+  "proof": [
+    {
+      "label": "Weekend Core",
+      "lockedAt": "2026-11-12 14:15 ET",
+      "sha256": "916ffa6bbd67ccc24899eb5a849331d3a691f04e26c1cebe5a546e4f1268319a",
+      "text": "Yvonne's Lightning Strikes | Free Weekend Core | NFL 2026 Week 10 | locked 2026-11-12 14:15 ET\n1. Pistons ML (NBA, Pistons @ Wizards, Thu Nov 12, 7:00 PM ET)\n2. Rockets ML (NBA, Jazz @ Rockets, Fri Nov 13, 8:30 PM ET)\n3. Spurs ML (NBA, Warriors @ Spurs, Fri Nov 13, 9:30 PM ET)\n4. Notre Dame ML (College, Boston College @ Notre Dame, Sat Nov 14, 3:30 PM ET)",
+      "postedOnX": ""
+    }
+  ]
 }
